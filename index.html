@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- SEO & META TAGS -->
+    <title>Resonansi | Ruang Renung oleh rslsyyf-art</title>
+    <meta name="description" content="Sebuah perjalanan pulang ke dalam diri. Ruang renung interaktif untuk menyembuhkan luka batin, diciptakan oleh rslsyyf-art.">
+    <meta name="keywords" content="resonansi, ruang renung, healing, puisi interaktif, rslsyyf-art, kesehatan mental, aesthetic website">
+    <meta name="author" content="rslsyyf-art">
+    <meta name="theme-color" content="#020617">
+    
+    <!-- FONTS & ICONS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CUSTOM STYLES -->
+    <style>
+        /* Font Utama: Novel Style */
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            overscroll-behavior-y: none;
+        }
+
+        /* Hide Scrollbar */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Scroll Snap */
+        .snap-container {
+            scroll-snap-type: y mandatory;
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-behavior: smooth;
+        }
+        .snap-section {
+            scroll-snap-align: start;
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+        }
+        .visible { opacity: 1; transform: translateY(0); }
+
+        /* Background Transition */
+        #bg-layer { transition: background-color 1.5s ease-in-out; }
+
+        /* Modal Animation */
+        .modal-enter { animation: modalIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .modal-exit { animation: modalOut 0.4s ease-in forwards; }
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        @keyframes modalOut {
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0; transform: scale(0.95); }
+        }
+    </style>
+</head>
+<body class="bg-[#020617] text-slate-300 selection:bg-slate-500/30 selection:text-white overflow-hidden">
+
+    <!-- BACKGROUND LAYER -->
+    <div id="bg-layer" class="fixed inset-0 z-0 bg-[#020617]"></div>
+
+    <!-- PARTIKEL -->
+    <canvas id="particle-canvas" class="fixed inset-0 z-0 pointer-events-none"></canvas>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="fixed top-0 w-full p-6 flex justify-between items-center z-50 mix-blend-difference text-slate-300 transition-opacity duration-500" id="navbar">
+        <span class="text-xs tracking-[0.3em] font-bold uppercase opacity-60 hover:opacity-100 transition-opacity cursor-default">Resonansi</span>
+        <button onclick="toggleAbout(true)" class="opacity-60 hover:opacity-100 transition-opacity p-2" aria-label="Tentang Kami">
+            <i class="fa-solid fa-circle-info text-lg"></i>
+        </button>
+    </nav>
+
+    <!-- KONTEN UTAMA -->
+    <main class="snap-container no-scrollbar relative z-10" id="main-scroll">
+        
+        <!-- BAB 0: COVER (Tidak ada tulisan BAB) -->
+        <section class="snap-section" data-index="0" data-bg="#020617" data-text="text-stone-300" data-theme="dark">
+            <div class="max-w-md px-8 text-center fade-in-up delay-200">
+                <h1 class="text-3xl md:text-5xl font-medium tracking-[0.5em] mb-8 uppercase whitespace-nowrap text-stone-300/90">
+                    Resonansi
+                </h1>
+                <div class="h-[1px] w-12 mx-auto mb-8 bg-stone-300 opacity-30"></div>
+                <p class="text-xl md:text-2xl italic font-light tracking-wide opacity-70">
+                    Sebuah perjalanan pulang ke dalam diri.
+                </p>
+                <div class="absolute bottom-12 left-0 right-0 animate-bounce opacity-30 text-xs tracking-widest uppercase">
+                    Usap ke atas
+                </div>
+            </div>
+        </section>
+
+        <!-- BAB 1 -->
+        <section class="snap-section" data-index="1" data-bg="#0f172a" data-text="text-slate-400" data-theme="dark">
+            <!-- Indikator Bab -->
+            <div class="absolute top-28 md:top-32 text-xs tracking-[0.3em] uppercase opacity-40 text-slate-400 font-bold fade-in-up delay-100">
+                Bab 1
+            </div>
+            
+            <div class="max-w-xl px-8 text-center fade-in-up">
+                <i class="fa-solid fa-feather mb-8 opacity-30 text-xl"></i>
+                <p class="text-2xl md:text-3xl leading-loose font-medium">
+                    <span class="text-4xl font-serif mr-1">A</span>dakalanya air mata jatuh<br>
+                    bukan karena penolakan semata,<br>
+                    melainkan karena hasrat yang begitu purba<br>
+                    untuk sekadar... dipahami.
+                </p>
+            </div>
+        </section>
+
+        <!-- BAB 2 -->
+        <section class="snap-section" data-index="2" data-bg="#1e293b" data-text="text-slate-300" data-theme="dark">
+            <div class="absolute top-28 md:top-32 text-xs tracking-[0.3em] uppercase opacity-40 text-slate-300 font-bold fade-in-up delay-100">
+                Bab 2
+            </div>
+            <div class="max-w-xl px-8 text-center fade-in-up">
+                <p class="text-2xl md:text-3xl leading-loose font-medium">
+                    Kita mengetuk pintu dengan ketulusan,<br>
+                    namun beranjak pulang membawa puing kehancuran.<br><br>
+                    Bukan karena kita salah,<br>
+                    hanya saja mereka memilih menutup mata<br>
+                    atas segala alasan yang kita bawa.
+                </p>
+            </div>
+        </section>
+
+        <!-- BAB 3 -->
+        <section class="snap-section" data-index="3" data-bg="#334155" data-text="text-slate-200" data-theme="dark">
+            <div class="absolute top-28 md:top-32 text-xs tracking-[0.3em] uppercase opacity-40 text-slate-200 font-bold fade-in-up delay-100">
+                Bab 3
+            </div>
+            <div class="max-w-xl px-8 text-center fade-in-up">
+                <p class="text-2xl md:text-3xl leading-loose font-medium">
+                    Ketahuilah, Temanku,<br>
+                    tidak semua amarah adalah bahasa cinta.<br>
+                    Tidak semua perhatian itu murni.<br><br>
+                    Ada luka yang disamarkan sebagai rasa sayang,<br>
+                    menggerogoti perlahan tanpa suara.
+                </p>
+            </div>
+        </section>
+
+        <!-- BAB 4 -->
+        <section class="snap-section" data-index="4" data-bg="#475569" data-text="text-slate-100" data-theme="dark">
+            <div class="absolute top-28 md:top-32 text-xs tracking-[0.3em] uppercase opacity-40 text-slate-100 font-bold fade-in-up delay-100">
+                Bab 4
+            </div>
+            <div class="max-w-xl px-8 text-center fade-in-up">
+                <p class="text-2xl md:text-3xl leading-loose font-medium">
+                    Jika sebuah permintaan membuat dadamu sesak,<br>
+                    itu bukan kasih sayang.<br><br>
+                    Itu adalah ego yang menuntut,<br>
+                    yang bersembunyi di balik topeng cinta.
+                </p>
+            </div>
+        </section>
+
+        <!-- BAB 5 -->
+        <section class="snap-section" data-index="5" data-bg="#64748b" data-text="text-white" data-theme="dark">
+            <div class="absolute top-28 md:top-32 text-xs tracking-[0.3em] uppercase opacity-40 text-white font-bold fade-in-up delay-100">
+                Bab 5
+            </div>
+            <div class="max-w-xl px-8 text-center fade-in-up">
+                <p class="text-2xl md:text-3xl leading-loose font-medium">
+                    Kau berhak untuk pulang,<br>
+                    meski riuh suara memintamu tinggal.<br><br>
+                    Kau berhak memeluk dirimu sendiri,<br>
+                    meski dunia memaksamu untuk terus bertahan<br>
+                    di tempat yang salah.
+                </p>
+            </div>
+        </section>
+
+        <!-- BAB 6 -->
+        <section class="snap-section" data-index="6" data-bg="#94a3b8" data-text="text-slate-50" data-theme="dark">
+            <div class="absolute top-28 md:top-32 text-xs tracking-[0.3em] uppercase opacity-40 text-slate-50 font-bold fade-in-up delay-100">
+                Bab 6
+            </div>
+            <div class="max-w-xl px-8 text-center fade-in-up">
+                <p class="text-2xl md:text-3xl leading-loose font-medium">
+                    Jangan pernah menyesal<br>
+                    karena telah memilih warasmu.<br><br>
+                    Jangan pernah meminta maaf<br>
+                    karena telah melindungi hatimu<br>
+                    dari tangan-tangan yang tak tahu cara menggenggam.
+                </p>
+            </div>
+        </section>
+
+        <!-- BAB 7 (CAHAYA) -->
+        <section class="snap-section" data-index="7" data-bg="#cbd5e1" data-text="text-slate-800" data-theme="light">
+            <div class="absolute top-28 md:top-32 text-xs tracking-[0.3em] uppercase opacity-40 text-slate-800 font-bold fade-in-up delay-100">
+                Bab 7
+            </div>
+            <div class="max-w-xl px-8 text-center fade-in-up text-slate-800">
+                <i class="fa-solid fa-sun mb-8 opacity-40 text-2xl text-amber-600"></i>
+                <p class="text-2xl md:text-3xl leading-loose font-medium">
+                    Tangismu malam ini bukanlah kelemahan.<br>
+                    Ia adalah bukti bahwa jiwamu masih hidup,<br>
+                    bahwa di sana...<br><br>
+                    masih ada ruang yang rindu diperlakukan<br>
+                    dengan selayaknya manusia.
+                </p>
+            </div>
+        </section>
+
+        <!-- BAB 8 -->
+        <section class="snap-section" data-index="8" data-bg="#f1f5f9" data-text="text-slate-900" data-theme="light">
+            <div class="absolute top-28 md:top-32 text-xs tracking-[0.3em] uppercase opacity-40 text-slate-900 font-bold fade-in-up delay-100">
+                Bab 8
+            </div>
+            <div class="max-w-xl px-8 text-center fade-in-up text-slate-900">
+                <p class="text-2xl md:text-3xl leading-loose font-medium">
+                    Suatu hari nanti,<br>
+                    akan ada seseorang yang membaca alasanmu<br>
+                    bahkan sebelum kau sempat mengejanya.<br><br>
+                    Yang memelukmu bukan karena ia ingin,<br>
+                    tapi karena ia tahu... kau butuh.
+                </p>
+            </div>
+        </section>
+
+        <!-- BAB 9 (EPILOG) -->
+        <section class="snap-section" data-index="9" data-bg="#ffffff" data-text="text-black" data-theme="light">
+            <div class="max-w-xl px-8 text-center relative w-full h-full flex flex-col justify-center items-center">
+                <!-- Indikator Epilog -->
+                <div class="absolute top-28 md:top-32 text-xs tracking-[0.3em] uppercase opacity-40 text-slate-900 font-bold fade-in-up delay-100">
+                    Epilog
+                </div>
+
+                <!-- Cahaya Latar -->
+                <div class="absolute w-[500px] h-[500px] bg-amber-100/60 rounded-full blur-[100px] -z-10 mix-blend-multiply"></div>
+                
+                <div class="space-y-6 text-slate-900">
+                    <p class="fade-in-up delay-100 text-2xl md:text-3xl font-light">Tarik napas dalam-dalam.</p>
+                    <p class="fade-in-up delay-300 text-2xl md:text-3xl font-light">Rasakan belenggu itu luruh bersama hembusan udara.</p>
+                    <p class="fade-in-up delay-500 text-2xl md:text-3xl font-light">Langit ini luas, dan kakimu masih kuat untuk melangkah.</p>
+                    <p class="fade-in-up delay-700 text-2xl md:text-4xl font-semibold mt-8">Jangan toleh ke belakang.</p>
+                    <p class="fade-in-up delay-900 text-2xl md:text-4xl font-semibold">Hidupmu adalah milikmu sepenuhnya.</p>
+                    
+                    <div class="fade-in-up delay-1000 pt-16">
+                        <span class="inline-block py-3 px-8 border-t border-slate-300 text-xs uppercase tracking-[0.4em] text-slate-500 font-bold">
+                            Sekarang, pergilah.<br>Dunia menantimu.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL ABOUT US (Tengah & Blur) -->
+    <div id="about-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/60 backdrop-blur-md transition-opacity duration-500 opacity-0">
+        <div class="bg-[#f8fafc] text-slate-800 p-8 md:p-12 max-w-sm w-[85%] shadow-2xl relative border border-slate-200 transform scale-95 transition-transform duration-500 rounded-sm" id="modal-content">
+            <button onclick="toggleAbout(false)" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 transition-colors p-2">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="text-center">
+                <div class="mb-6 text-slate-800 opacity-50 flex justify-center">
+                    <i class="fa-solid fa-feather text-3xl"></i>
+                </div>
+                <h2 class="text-xs font-bold tracking-[0.3em] uppercase text-slate-400 mb-4">Tentang Karya</h2>
+                <div class="w-8 h-[1px] bg-slate-300 mx-auto mb-6"></div>
+                <p class="text-lg italic leading-relaxed text-slate-600 mb-8 font-light">
+                    "Resonansi" didedikasikan untuk jiwa-jiwa yang sedang belajar berjalan lagi setelah dipatahkan. Kamu tidak sendiri.
+                </p>
+                <div class="inline-block px-8 py-4 border border-slate-200 bg-slate-50">
+                    <span class="block text-[9px] uppercase tracking-[0.2em] text-slate-400 mb-2">Developer & Artist</span>
+                    <span class="text-xl font-serif text-slate-900 tracking-wide font-medium">rslsyyf-art</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+        // LOGIC PARTIKEL
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles = [], currentTheme = 'dark';
+
+        function resize() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * width; this.y = Math.random() * height;
+                this.size = Math.random() * 2;
+                this.speedY = Math.random() * 0.5 - 0.25; this.speedX = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.1; this.life = Math.random() * 100;
+            }
+            update() {
+                this.y -= this.speedY; this.x += this.speedX; this.life--;
+                if (this.life < 0 || this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset();
+            }
+            draw() {
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = currentTheme === 'light' ? `rgba(180, 160, 120, ${this.opacity})` : `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() { particles = []; for (let i = 0; i < 60; i++) particles.push(new Particle()); }
+        initParticles();
+        function animateParticles() { ctx.clearRect(0, 0, width, height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animateParticles); }
+        animateParticles();
+
+        // SCROLL OBSERVER
+        const sections = document.querySelectorAll('.snap-section');
+        const bgLayer = document.getElementById('bg-layer');
+        const nav = document.getElementById('navbar');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const section = entry.target;
+                    bgLayer.style.backgroundColor = section.getAttribute('data-bg');
+                    currentTheme = section.getAttribute('data-theme');
+                    
+                    if (currentTheme === 'light') {
+                        nav.classList.remove('text-slate-300', 'mix-blend-difference');
+                        nav.classList.add('text-slate-800');
+                    } else {
+                        nav.classList.add('text-slate-300', 'mix-blend-difference');
+                        nav.classList.remove('text-slate-800');
+                    }
+
+                    section.querySelectorAll('.fade-in-up').forEach((el, index) => {
+                        setTimeout(() => el.classList.add('visible'), index * 200);
+                    });
+                } else {
+                    entry.target.querySelectorAll('.fade-in-up').forEach(el => el.classList.remove('visible'));
+                }
+            });
+        }, { threshold: 0.5 });
+        sections.forEach(s => observer.observe(s));
+
+        // MODAL LOGIC
+        function toggleAbout(show) {
+            const modal = document.getElementById('about-modal');
+            const content = document.getElementById('modal-content');
+            if (show) {
+                modal.classList.remove('hidden'); void modal.offsetWidth; 
+                modal.classList.remove('opacity-0'); content.classList.add('modal-enter'); content.classList.remove('modal-exit');
+            } else {
+                modal.classList.add('opacity-0'); content.classList.remove('modal-enter'); content.classList.add('modal-exit');
+                setTimeout(() => modal.classList.add('hidden'), 500);
+            }
+        }
+    </script>
+</body>
+</html>
+
+
